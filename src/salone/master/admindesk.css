@@ -1,0 +1,20 @@
+.imgbox{
+    -fx-background-image: url(img1.jpg);
+    -fx-background-size: cover;     
+}
+
+
+.nav {
+-fx-background-color: #FDA0FF;
+}
+.cbt{
+    -fx-background-color: transparent;
+}
+
+
+.boxx{
+    -fx-background-radius:1px 30px 30px 1px;
+    -fx-background-color: #F6DEF6;
+    -fx-opacity: 0.7;
+}
+
