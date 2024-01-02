@@ -1,0 +1,178 @@
+.parent{
+    -fx-background-color: #FDA0FF;
+}
+.root {
+    -fx-background-image: url(media/img1.jpg);
+    -fx-background-size: cover;     
+}
+.child {
+    -fx-background-color: #CE7BFF;
+}
+.loginbtn{
+    -fx-background-color:#CE7BFF;
+    -fx-background-radius: 10px;
+} 
+.loginbtn:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;    
+}
+.box{
+    /*-fx-border-radius: 100px;*/
+    -fx-background-color: #F6DEF6;
+    -fx-pref-width:450px;
+    -fx-pref-height:350px;
+    -fx-opacity: 0.7;
+    -fx-background-radius: 40px;
+    
+}
+.imgbox{
+    -fx-background-image: url(media/img1.jpg);
+    -fx-background-size: cover;     
+}
+
+
+.nav {
+-fx-background-color: #FDA0FF;
+}
+.cbt{
+    -fx-background-color: transparent;
+}
+
+
+.boxx{
+    -fx-background-radius:1px 30px 30px 1px;
+    -fx-background-color: #F6DEF6;
+    -fx-opacity: 0.7;
+}
+
+.background{
+    -fx-background-image: url(media/hair.jpg);
+    -fx-background-size: cover;
+    -fx-opacity: 0.7;
+}
+.pane{
+    -fx-pref-width:400px;
+    -fx-pref-height:600px;
+    -fx-background-color: rgba(255, 203, 210, 0.80);
+}
+.hbox{
+    -fx-pref-width:800px;
+    -fx-pref-height:93px;
+    -fx-background-color:rgba(253, 160, 255, 0.70);
+}
+.textf{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-border-color:#740E5EBA;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+.button {
+  -fx-pref-width:154px;
+  -fx-pref-height:53px;
+  -fx-background-color:#CE7BFF;
+  -fx-border: none;
+  -fx-text-align: center;
+  -fx-text-decoration: none;
+  -fx-display: inline-block;
+  -fx-margin: 4px 2px;
+}
+.button:hover{
+    -fx-background-color: transparent;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+}
+
+
+
+
+/* Client registration css */
+
+.background {
+    -fx-background-image: url(media/img1.jpg);
+    -fx-background-size: cover;
+}
+.header {
+    -fx-pref-height : 90px;
+    -fx-pref-width : 800px;
+    -fx-background-color : #FDA0FF;
+}
+.box {
+    -fx-background-color: #F6DEF6;
+    -fx-pref-height :415px;
+    -fx-pref-width :490px;
+    -fx-border-radius : 2px;
+    -fx-background-radius:40px;    
+}
+.sumbitbtn{
+    -fx-background-color:#CE7BFF;
+    -fx-background-radius:10px;
+}
+.submitbtn:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px; 
+}
+
+
+/* user login */
+.image{
+    -fx-background-image:url(media/back.jpg);
+    -fx-background-size: cover;
+    -fx-opacity: 0.7;
+}
+.rightpane{
+    -fx-background-color: FFCBD2;
+    -fx-opacity: 0.9;
+}
+.topborder{
+    -fx-background-color: FDA0FF;
+    -fx-opacity: 0.9;
+}
+.toplogo{
+    -fx-image: url(media/scissors.png);
+    -fx-background-color: black; 
+}
+.imgusers{
+    -fx-image: url(media/team.png);
+}
+.textf{
+    -fx-background-color: transparent;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 2px 0px;
+/*    -fx-prompt-text-fill: gray;*/
+}
+.passf{
+    -fx-background-color: transparent;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-prompt-text-fill: gray;
+}
+.loginbtn{
+    -fx-background-color: CE7BFF;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 50px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10px;
+}
+.loginbtn:hover{
+    /*-fx-background-color: ;*/
+}
+.forgetf{
+    -fx-color: #000000;
+}
+.forgetf:hover{
+    -fx-text-fill:  DE3163;
+    -fx-underline: true;
+}

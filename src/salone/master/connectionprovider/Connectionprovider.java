@@ -12,7 +12,7 @@ public class Connectionprovider {
           if(con == null){
             Class.forName("org.postgresql.Driver");
             
-            String url = "jdbc:postgresql://localhost:5432/demo";
+            String url = "jdbc:postgresql://localhost:5432/trevita_ms";
             String username = "postgres";
             String password = "admin123";
             con = DriverManager.getConnection(url, username, password);
