@@ -88,34 +88,7 @@
 }
 
 
-/* client registration */
-.background {
-    -fx-background-image: url(media/img1.jpg);
-    -fx-background-size: cover;
-}
-.header {
-    -fx-pref-height : 90px;
-    -fx-pref-width : 800px;
-    -fx-background-color : #FDA0FF;
-}
-.box {
-    -fx-background-color: #F6DEF6;
-    -fx-pref-height :415px;
-    -fx-pref-width :490px;
-    -fx-border-radius : 2px;
-    -fx-background-radius:40px;    
-}
-.sumbitbtn{
-    -fx-background-color:#CE7BFF;
-    -fx-background-radius:10px;
-}
-.submitbtn:hover{
-    -fx-background-color: transparent;
-    -fx-background-radius: 5px;
-    -fx-border-width: 3px;
-    -fx-border-color: black;
-    -fx-border-radius: 10px; 
-}
+
 
 /* Client registration css */
 
