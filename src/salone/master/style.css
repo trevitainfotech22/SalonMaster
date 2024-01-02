@@ -87,3 +87,59 @@
     -fx-border-color: black;
 }
 
+// login css
+
+.image{
+    -fx-background-image:url(media/back.jpg);
+    -fx-background-size: cover;
+    -fx-opacity: 0.7;
+}
+.rightpane{
+    -fx-background-color: FFCBD2;
+    -fx-opacity: 0.9;
+}
+.topborder{
+    -fx-background-color: FDA0FF;
+    -fx-opacity: 0.9;
+}
+.toplogo{
+    -fx-image: url(media/scissors.png);
+    -fx-background-color: black; 
+}
+.imgusers{
+    -fx-image: url(media/team.png);
+}
+.textf{
+    -fx-background-color: transparent;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 2px 0px;
+/*    -fx-prompt-text-fill: gray;*/
+}
+.passf{
+    -fx-background-color: transparent;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-prompt-text-fill: gray;
+}
+.loginbtn{
+    -fx-background-color: CE7BFF;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 50px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10px;
+}
+.loginbtn:hover{
+    /*-fx-background-color: ;*/
+}
+.forgetf{
+    -fx-color: #000000;
+}
+.forgetf:hover{
+    -fx-text-fill:  DE3163;
+    -fx-underline: true;
+}
