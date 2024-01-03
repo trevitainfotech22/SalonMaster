@@ -15,7 +15,7 @@ public class AdminLogin extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminLogin.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Admin Login");      
         stage.setScene(scene);

@@ -49,7 +49,7 @@ public class AdminLoginController implements Initializable {
 
                 Connection con = Connectionprovider.getConnection();
 
-                pst = con.prepareStatement("select * from admin where name=? and password=?");
+                pst = con.prepareStatement("select * from ms_adminuser where username=? and password=?");
 
                 pst.setString(1, Uname);
                 pst.setString(2, Pass);
