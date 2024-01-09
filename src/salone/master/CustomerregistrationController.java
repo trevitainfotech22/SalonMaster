@@ -3,13 +3,11 @@ package salone.master;
 import salone.master.connectionprovider.Connectionprovider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class CustomerregistrationController {
     
@@ -31,34 +29,36 @@ public class CustomerregistrationController {
     @FXML
     private TextField GenTextFIeld;
 
-    @FXML
-    private Button mybutton;
+  
     
     
 
     @FXML
-    private void submit(ActionEvent event) {
+    public void submit(ActionEvent event) {
         String name = cnameTextField.getText();
         String phone_no = numTextField.getText();
-        String birthDateString = BdateTextField.getText();
-        String anniversaryDateString = AdateTextField.getText();
+        String birthDate = BdateTextField.getText();
+        String anniversaryDate = AdateTextField.getText();
         String gen = GenTextFIeld.getText();
 
-        Date birthDate = null;
-        Date anniversaryDate = null;
+        
+        String Birtregx = "\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}";
 
-        if (name.isEmpty() || phone_no.isEmpty() || birthDateString.isEmpty() || anniversaryDateString.isEmpty() || gen.isEmpty()) {
-            System.out.println("All fields must be filled");
-        } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-            try {
-                birthDate = dateFormat.parse(birthDateString);
-                anniversaryDate = dateFormat.parse(anniversaryDateString);
-                
+        if (name.isEmpty() || phone_no.isEmpty() || birthDate.isEmpty() || anniversaryDate.isEmpty() || gen.isEmpty()) {
+           JOptionPane.showMessageDialog(null, "All fields must be required");
+        }
+        else if(!phone_no.matches("\\d{10}")){
+                   JOptionPane.showMessageDialog(null, "Invalid Phone Number");
+        }
+        else if(!birthDate.matches(Birtregx)){
+            JOptionPane.showMessageDialog(null, "use this Dateformate:dd-mm-yyyy");
+        }
+        else if(!anniversaryDate.matches(Birtregx)){
+            JOptionPane.showMessageDialog(null, "use this Dateformate:dd-mm-yyyy");
+        }
+        else {
                 
                 try{
-                    Class.forName("org.postgresql.Driver");
                     
                    con = Connectionprovider.getConnection();
                     
@@ -74,25 +74,22 @@ public class CustomerregistrationController {
                                 String cuquery = "insert into ms_cureg (userid,c_birthday,c_anniversary, gender) values (?,?,?,?)";
                                 try(var custatement = con.prepareStatement(cuquery)){
                                     custatement.setInt(1, userid);
-                                    custatement.setDate(2, new java.sql.Date(birthDate.getTime()));
-                                    custatement.setDate(3, new java.sql.Date(anniversaryDate.getTime()));
+                                    custatement.setString(2, birthDate);
+                                    custatement.setString(3, anniversaryDate);
                                     custatement.setString(4, gen);
                                     
                                     custatement.executeUpdate();
                                 }
                             }
                         }
-                        System.out.print("Inserted....");
+                        JOptionPane.showMessageDialog(null, "Registration successfully");
                     }
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+                }catch(SQLException e){
+                    System.out.println(e);
+                    }
                 
                 
-            } catch (ParseException e) {
-                System.out.println("Error parsing dates");
-                e.printStackTrace();
-            }
+           
         }
 
     }
