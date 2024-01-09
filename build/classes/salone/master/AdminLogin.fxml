@@ -12,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@adminlogin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salone.master.AdminLoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salone.master.AdminLoginController">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="800.0" styleClass="parent" stylesheets="@adminlogin.css">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="800.0" styleClass="parent" stylesheets="@style.css">
          <children>
             <ImageView fitHeight="50.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img2.png" />
+                  <Image url="@media/img2.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -34,29 +34,29 @@
             </Text>
          </children>
       </HBox>
-      <Pane blendMode="MULTIPLY" layoutX="175.0" layoutY="164.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="box">
+      <Pane blendMode="MULTIPLY" layoutX="155.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="424.0" styleClass="box" stylesheets="@style.css">
          <children>
-            <Text layoutX="75.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" wrappingWidth="96.2939453125">
+            <Text layoutX="116.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" wrappingWidth="96.2939453125">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="UnameTextField" layoutX="75.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="238.0" promptText="Username">
+            <TextField fx:id="UnameTextField" layoutX="136.0" layoutY="122.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="238.0" promptText="Username">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
-            <Text layoutX="75.0" layoutY="161.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :">
+            <Text layoutX="119.0" layoutY="201.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <PasswordField fx:id="myPasswordField" layoutX="75.0" layoutY="175.0" prefHeight="27.0" prefWidth="238.0" promptText="Password">
+            <PasswordField fx:id="myPasswordField" layoutX="133.0" layoutY="206.0" prefHeight="27.0" prefWidth="238.0" promptText="Password">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </PasswordField>
-            <Button fx:id="submite" defaultButton="true" layoutX="160.0" layoutY="245.0" mnemonicParsing="false" onAction="#submit" prefHeight="39.0" prefWidth="131.0" styleClass="loginbtn" stylesheets="@adminlogin.css" text="Login">
+            <Button fx:id="submite" defaultButton="true" layoutX="120.0" layoutY="307.0" mnemonicParsing="false" onAction="#submit" prefHeight="39.0" prefWidth="131.0" styleClass="loginbtn" stylesheets="@style.css" text="Login">
                <font>
                   <Font size="18.0" />
                </font>

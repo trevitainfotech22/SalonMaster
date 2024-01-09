@@ -42,7 +42,7 @@ public class CustomerregistrationController {
         String gen = GenTextFIeld.getText();
 
         
-        String Birtregx = "\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}";
+        String Birtregx = "^\\d{1,2}-\\d{1,2}-\\d{4}$";
 
         if (name.isEmpty() || phone_no.isEmpty() || birthDate.isEmpty() || anniversaryDate.isEmpty() || gen.isEmpty()) {
            JOptionPane.showMessageDialog(null, "All fields must be required");

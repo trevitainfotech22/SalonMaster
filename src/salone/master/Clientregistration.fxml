@@ -30,6 +30,11 @@
                   <Insets left="10.0" top="45.0" />
                </HBox.margin>
             </Text>
+            <Button fx:id="admin" mnemonicParsing="false" onAction="#admindesk" styleClass="clientbt" stylesheets="@style.css" text="admindesk">
+               <HBox.margin>
+                  <Insets left="380.0" top="18.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Pane blendMode="MULTIPLY" layoutX="148.0" layoutY="139.0" prefHeight="413.0" prefWidth="487.0" styleClass="box" stylesheets="@style.css">
