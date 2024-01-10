@@ -20,10 +20,9 @@
     -fx-border-radius: 10px;    
 }
 .box{
-    /*-fx-border-radius: 100px;*/
     -fx-background-color: #F6DEF6;
-    -fx-pref-width:450px;
-    -fx-pref-height:350px;
+    -fx-pref-width:350px;
+    -fx-pref-height:200px;
     -fx-opacity: 0.7;
     -fx-background-radius: 40px;
     
@@ -42,11 +41,11 @@
 }
 
 
-.boxx{
-    -fx-background-radius:1px 30px 30px 1px;
-    -fx-background-color: #F6DEF6;
-    -fx-opacity: 0.7;
-}
+    .boxx{
+        -fx-background-radius:1px 30px 30px 1px;
+        -fx-background-color: #F6DEF6;
+        -fx-opacity: 0.7;
+    }
 
 .background{
     -fx-background-image: url(media/hair.jpg);
@@ -56,14 +55,14 @@
 .pane{
     -fx-pref-width:400px;
     -fx-pref-height:600px;
-    -fx-background-color: rgba(255, 203, 210, 0.80);
+    -fx-background-color: rgba(255, 203, 210, 0.70);
 }
 .hbox{
     -fx-pref-width:800px;
     -fx-pref-height:93px;
     -fx-background-color:rgba(253, 160, 255, 0.70);
 }
-.textf{
+.cutextf{
     -fx-background-color: transparent;
     -fx-text-fill: black;
     -fx-pref-width: 250px;
@@ -176,3 +175,19 @@
     -fx-text-fill:  DE3163;
     -fx-underline: true;
 }
+
+/*Admin desk css*/
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.clientbt{
+    -fx-background-color: transparent;
+}
+.clientbt:hover{
+    -fx-text-fill:grey;
+    -fx-opacity-text: 0.9;
+    -fx-border-color: transparent;
+}   
