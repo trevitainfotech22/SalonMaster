@@ -13,13 +13,14 @@ public class Product extends Application {
     static void setItems(ObservableList<BillingItem> productitemList) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/Product.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Salon Master");
+
         stage.setScene(scene);
         stage.show();
     }
@@ -27,5 +28,5 @@ public class Product extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

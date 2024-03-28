@@ -12,7 +12,7 @@ public class Customerregistration extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/Customerregistration.fxml"));
         
         Scene scene = new Scene(root);
-         stage.setTitle("Customer Registration");
+        stage.setTitle("Salon Master");      
         
         stage.setScene(scene);
         stage.show();

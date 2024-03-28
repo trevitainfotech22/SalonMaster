@@ -89,10 +89,8 @@
                   </HBox>
                   <TableView fx:id="myTable" prefHeight="352.0" prefWidth="481.0" styleClass="dashtable">
                     <columns>
-                      <TableColumn prefWidth="50" />
-                      <TableColumn prefWidth="116.0" text="PROFILE" />
-                        <TableColumn fx:id="c_name" prefWidth="124.0" text="NAME" />
-                        <TableColumn fx:id="email" minWidth="0.0" prefWidth="177.0" text="EMAIL" />
+                        <TableColumn fx:id="c_name" prefWidth="165.0" text="NAME" />
+                        <TableColumn fx:id="email" minWidth="0.0" prefWidth="312.0" text="EMAIL" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" top="30.0" />

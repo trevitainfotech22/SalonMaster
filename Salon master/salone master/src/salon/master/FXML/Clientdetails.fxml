@@ -143,12 +143,7 @@
                <children>
                   <Button fx:id="EDIT" mnemonicParsing="false" onAction="#edit" styleClass="cldedit" stylesheets="@../CSS/style.css" text="EDIT">
                      <HBox.margin>
-                        <Insets left="125.0" top="40.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="DELETE" layoutX="110.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" styleClass="cldedit" stylesheets="@../CSS/style.css" text="DELETE">
-                     <HBox.margin>
-                        <Insets left="25.0" top="40.0" />
+                        <Insets left="180.0" top="40.0" />
                      </HBox.margin>
                   </Button>
                </children>

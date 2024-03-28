@@ -73,14 +73,7 @@ public class BookAppointmentController implements Initializable {
     @FXML
     private Button menu;
 
-    @FXML
-    private Button menuback;
-
-    @FXML
-    private StackPane Slider;
-    
-    @FXML
-    private ScrollPane scroll;
+ 
 
     String datergx = "^\\d{1,2}-\\d{1,2}-\\d{4}$";
 
@@ -260,61 +253,10 @@ public class BookAppointmentController implements Initializable {
 //        stage.setScene(scene);
 //        stage.show();
 //    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-
-//        horizontal off
-        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-//      Slider animation
-
-        scroll.setTranslateX(-800);
-        menuback.setTranslateX(-800);
-
-        menu.setOnMouseClicked(event -> {
-            TranslateTransition slideMenu = new TranslateTransition(); // Transition for the menu
-            slideMenu.setDuration(Duration.seconds(0.4));
-            slideMenu.setNode(scroll); // Set the menu as the node to animate
-            slideMenu.setToX(0);
-
-            TranslateTransition slideBack = new TranslateTransition(); 
-            slideBack.setDuration(Duration.seconds(0.4));
-            slideBack.setNode(menuback); 
-            slideBack.setToX(0);
-
-            ParallelTransition parallelTransition = new ParallelTransition(slideMenu, slideBack); 
-            parallelTransition.play();
-
-            parallelTransition.setOnFinished((ActionEvent e) -> {
-                menu.setVisible(false);
-                menuback.setVisible(true);
-            });
-        });
-
-        menuback.setOnMouseClicked(event -> {
-            TranslateTransition slideMenu = new TranslateTransition(); 
-            slideMenu.setDuration(Duration.seconds(0.4));
-            slideMenu.setNode(scroll); 
-            slideMenu.setToX(-800);
-
-            TranslateTransition slideBack = new TranslateTransition();
-            slideBack.setDuration(Duration.seconds(0.4));
-            slideBack.setNode(menuback); 
-            slideBack.setToX(-800);
-
-            ParallelTransition parallelTransition = new ParallelTransition(slideMenu, slideBack);
-            parallelTransition.play();
-
-            parallelTransition.setOnFinished((ActionEvent e) -> {
-                menu.setVisible(true);
-                menuback.setVisible(false);
-            });
-        });
 //        -------------------------------------------------------
-
         searchappointment.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 try {
@@ -400,102 +342,4 @@ public class BookAppointmentController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void Im(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Product.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void Report(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Report.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void Reward(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Reward.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void Setting(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Setting.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void apb_list(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/APPOINMENTS.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void add_product(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Inventory.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void billing(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Billing.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void cu_list(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Customerlist.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void cu_reg(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Customerregistration.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-     @FXML
-    public void emp(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/EmployeeList.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void blhistory(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../FXML/Billinghistory.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

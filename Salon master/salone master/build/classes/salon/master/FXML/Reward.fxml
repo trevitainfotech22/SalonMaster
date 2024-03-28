@@ -30,9 +30,8 @@
       </TableView>
       <Pane layoutX="550.0" layoutY="69.0" prefHeight="530.0" prefWidth="250.0" stylesheets="@../CSS/Clientstyle.css">
          <children>
-            <TextField fx:id="search" layoutX="14.0" layoutY="24.0" prefHeight="26.0" prefWidth="225.0" promptText="Search number" styleClass="textfield" stylesheets="@../CSS/Clientstyle.css" />
-            <TextField fx:id="minusreward" layoutX="14.0" layoutY="69.0" prefHeight="26.0" prefWidth="143.0" promptText="Add Reward" styleClass="textfield" />
-            <Button fx:id="minus" layoutX="165.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="15.0" prefWidth="74.0" styleClass="redeem" stylesheets="@../CSS/Clientstyle.css" text="Redeem" textFill="#a1c6ea">
+            <TextField fx:id="minusreward" layoutX="14.0" layoutY="19.0" prefHeight="26.0" prefWidth="225.0" promptText="Add Reward" styleClass="textfield" />
+            <Button fx:id="minus" layoutX="27.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="27.0" prefWidth="200.0" styleClass="redeem" stylesheets="@../CSS/Clientstyle.css" text="Redeem" textFill="#a1c6ea">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -303,9 +302,22 @@
                         <Insets left="300.0" top="25.0" />
                      </HBox.margin>
                   </Label>
+                  <Button fx:id="search1" mnemonicParsing="false" styleClass="humble_btn" stylesheets="@../CSS/clientstyle.css">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/magnifying-glass.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="300.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>
       </VBox>
+      <TextField fx:id="search" layoutX="480.0" layoutY="17.0" prefHeight="26.0" prefWidth="225.0" promptText="Search number" styleClass="textfield" stylesheets="@../CSS/Clientstyle.css" visible="false" />
    </children>
 </AnchorPane>

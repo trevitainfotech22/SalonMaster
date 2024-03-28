@@ -21,7 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
@@ -42,7 +44,7 @@ public class BillinghistoryController implements Initializable {
     private TableView<BillEntry> Billinghistory;
 
     @FXML
-    private TableColumn<BillEntry, String> invoiceNoColumn;
+    private TableColumn<BillEntry, Integer> invoiceNoColumn;
 
     @FXML
     private TableColumn<BillEntry, String> custNumColumn;
@@ -57,10 +59,10 @@ public class BillinghistoryController implements Initializable {
     private TableColumn<BillEntry, String> dateColumn;
 
     @FXML
-    private TableColumn<BillEntry, Integer> stockColumn;
+    private TableColumn<BillEntry, String> stockColumn;
 
     @FXML
-    private TableColumn<BillEntry, Double> priceColumn;
+    private TableColumn<BillEntry, Integer> priceColumn;
 
     private Connection con;
 
@@ -92,13 +94,43 @@ public class BillinghistoryController implements Initializable {
     private Scene scene;
     private Parent root;
 
- 
-
     private ObservableList<BillEntry> billEntries = FXCollections.observableArrayList();
 
     @FXML
     public void delete(ActionEvent event) {
+        BillEntry selectedEntry = Billinghistory.getSelectionModel().getSelectedItem();
 
+        if (selectedEntry == null) {
+            showAlert(Alert.AlertType.ERROR, "No Item Selected", "Please select an entry to delete.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Delete Entry");
+        alert.setContentText("Are you sure you want to delete this entry?");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    String query = "DELETE FROM ms_bl WHERE invoice_no = ?";
+                    PreparedStatement preparedStatement = con.prepareStatement(query);
+                    preparedStatement.setInt(1, selectedEntry.getInvoiceNo());
+
+                    int affectedRows = preparedStatement.executeUpdate();
+                    if (affectedRows > 0) {
+                        billEntries.remove(selectedEntry);
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete the entry.");
+                    }
+
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while deleting the entry.");
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @FXML
@@ -160,8 +192,8 @@ public class BillinghistoryController implements Initializable {
 
         //        Search bar and date bar
         search.setOnMouseClicked(event -> {
-    searchbar.setVisible(!searchbar.isVisible());
-});
+            searchbar.setVisible(!searchbar.isVisible());
+        });
 
         con = Connectionprovider.getConnection();
 
@@ -176,12 +208,12 @@ public class BillinghistoryController implements Initializable {
     }
 
     private void initializeColumns() {
-        invoiceNoColumn.setCellValueFactory(cellData -> cellData.getValue().invoiceNoProperty());
+        invoiceNoColumn.setCellValueFactory(cellData -> cellData.getValue().invoiceNoProperty().asObject());
         custNumColumn.setCellValueFactory(cellData -> cellData.getValue().custNumProperty());
         itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
         paymentMethodColumn.setCellValueFactory(cellData -> cellData.getValue().paymentMethodProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
-        stockColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
+        stockColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty());
         priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
     }
 
@@ -192,13 +224,13 @@ public class BillinghistoryController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String invoiceNo = resultSet.getString("invoice_no");
+                int invoiceNo = resultSet.getInt("invoice_no");
                 String custNum = resultSet.getString("custnum");
                 String item = resultSet.getString("item");
                 String paymentMethod = resultSet.getString("payment_method");
                 String date = resultSet.getString("date");
-                int stock = resultSet.getInt("stock");
-                double price = resultSet.getDouble("price");
+                String stock = resultSet.getString("stock");
+                int price = resultSet.getInt("price");
 
                 billEntries.add(new BillEntry(invoiceNo, custNum, item, paymentMethod, date, stock, price));
             }
@@ -231,9 +263,6 @@ public class BillinghistoryController implements Initializable {
             Billinghistory.setItems(filteredList);
         });
     }
-    
-  
-    
 
 //    Redirect pages
     @FXML
@@ -336,4 +365,10 @@ public class BillinghistoryController implements Initializable {
         stage.show();
     }
 
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }

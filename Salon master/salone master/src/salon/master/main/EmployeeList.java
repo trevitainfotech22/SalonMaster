@@ -14,6 +14,8 @@ public class EmployeeList extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/EmployeeList.fxml"));
 
         Scene scene = new Scene(root);
+        stage.setTitle("Salon Master");
+
         stage.setScene(scene);
         stage.show();
     }

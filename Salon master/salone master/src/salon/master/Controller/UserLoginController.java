@@ -92,42 +92,42 @@ public class UserLoginController {
     }
 
 
-    @FXML
-    private void togglePasswordVisibility(ActionEvent event) {
-        if (passwordField.isVisible()) {
-            // Switch to show password
-            passwordField.setVisible(false);
-            TextField textField = new TextField(passwordField.getText());
-            textField.setPromptText("Password");
-            textField.setPrefWidth(passwordField.getWidth());
-            textField.setPrefHeight(passwordField.getHeight());
-            textField.setFont(passwordField.getFont());
-            textField.setId("temporaryTextField");
-            textField.setLayoutX(passwordField.getLayoutX());
-            textField.setLayoutY(passwordField.getLayoutY());
-            ((Pane) passwordField.getParent()).getChildren().add(textField);
-            Showpassword.setText("Show Password");
-//            Hidepassword.setText("Hide Password"); // Set the text for the Hidepassword button
-        } else {
-            // Switch to hide password
-            TextField textField = (TextField) ((Pane) passwordField.getParent()).lookup("#temporaryTextField");
-            passwordField.setText(textField.getText());
-            ((Pane) passwordField.getParent()).getChildren().remove(textField);
-            passwordField.setVisible(true);
-//            Showpassword.setText("Hide Password");
-            Hidepassword.setText("Hide Password"); // Reset the text for the Hidepassword button
-        }
-    }
+//    @FXML
+//    private void togglePasswordVisibility(ActionEvent event) {
+//        if (passwordField.isVisible()) {
+//            // Switch to show password
+//            passwordField.setVisible(false);
+//            TextField textField = new TextField(passwordField.getText());
+//            textField.setPromptText("Password");
+//            textField.setPrefWidth(passwordField.getWidth());
+//            textField.setPrefHeight(passwordField.getHeight());
+//            textField.setFont(passwordField.getFont());
+//            textField.setId("temporaryTextField");
+//            textField.setLayoutX(passwordField.getLayoutX());
+//            textField.setLayoutY(passwordField.getLayoutY());
+//            ((Pane) passwordField.getParent()).getChildren().add(textField);
+//            Showpassword.setText("Show Password");
+////            Hidepassword.setText("Hide Password"); // Set the text for the Hidepassword button
+//        } else {
+//            // Switch to hide password
+//            TextField textField = (TextField) ((Pane) passwordField.getParent()).lookup("#temporaryTextField");
+//            passwordField.setText(textField.getText());
+//            ((Pane) passwordField.getParent()).getChildren().remove(textField);
+//            passwordField.setVisible(true);
+////            Showpassword.setText("Hide Password");
+//            Hidepassword.setText("Hide Password"); // Reset the text for the Hidepassword button
+//        }
+//    }
 
-
-    @FXML
-    private void hidePasswordField(ActionEvent event) {
-        TextField textField = (TextField) ((Pane) passwordField.getParent()).lookup("#temporaryTextField");
-        ((Pane) passwordField.getParent()).getChildren().remove(textField);
-        passwordField.setVisible(true);
-        Showpassword.setText("Show Password");
-        Hidepassword.setText("Hide Password"); // Reset the text for the Hidepassword button
-    }
+//
+//    @FXML
+//    private void hidePasswordField(ActionEvent event) {
+//        TextField textField = (TextField) ((Pane) passwordField.getParent()).lookup("#temporaryTextField");
+//        ((Pane) passwordField.getParent()).getChildren().remove(textField);
+//        passwordField.setVisible(true);
+//        Showpassword.setText("Show Password");
+//        Hidepassword.setText("Hide Password"); // Reset the text for the Hidepassword button
+//    }
 
 
     private void showAlert(String title, String content) {

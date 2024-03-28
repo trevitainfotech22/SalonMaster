@@ -1,5 +1,6 @@
 package salon.master.Controller;
 
+
 import salon.master.GETSET.Adminclient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +32,7 @@ import javafx.event.EventHandler;
 import javafx.util.Duration;
 import salon.master.connectionprovider.Connectionprovider;
 import javafx.animation.PauseTransition;
-
+import javafx.scene.control.Button;
 public class AdmindeskController implements Initializable {
 
     @FXML
@@ -58,7 +59,8 @@ public class AdmindeskController implements Initializable {
     private Scene scene;
     private Parent root;
     private Integer count;
-
+    
+     private Adminclient adminclient;
     @FXML
     public void deleteButton(ActionEvent event) throws SQLException {
         Adminclient adminClient = myTable.getSelectionModel().getSelectedItem();
@@ -86,31 +88,28 @@ public class AdmindeskController implements Initializable {
     }
 
     @FXML
-    public void showdetails(ActionEvent event) {
-        Adminclient adminClient = myTable.getSelectionModel().getSelectedItem();
+public void showdetails(ActionEvent event) {
+    Adminclient adminclient = myTable.getSelectionModel().getSelectedItem();
+    if (adminclient == null) {
+        System.out.println("Admin client is null");
+        return;
+    }
 
-        if (adminClient == null) {
-            Showalert();
-            return;
-        }
-        stage = (Stage) myTable.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../FXML/Clientdetails.fxml"));
-
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex);
-            return;
-        }
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/Clientdetails.fxml"));
+        root = loader.load();
         ClientdetailsController clientdetailsController = loader.getController();
-        clientdetailsController.setAdminclient(adminClient);
+        clientdetailsController.setAdminclient(adminclient); 
+
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+    } catch (IOException e) {
+        System.out.println(e);
     }
+}
+
 
     @FXML
     public void AddToClient(ActionEvent event) throws IOException {
@@ -145,6 +144,7 @@ public class AdmindeskController implements Initializable {
         c_name.setCellValueFactory(new PropertyValueFactory<>("c_name"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+
         try {
             Connection con = Connectionprovider.getConnection();
             String q = "SELECT * FROM ms_creg;";
@@ -160,7 +160,7 @@ public class AdmindeskController implements Initializable {
                 String dbpassword = rs.getString("password");
                 String dbaddress = rs.getString("address");
 
-                Adminclient adminClient = new Adminclient(dbc_name, dbs_name, dbemail, dbphone_no,dbgst,dbpassword,  dbaddress);
+                Adminclient adminClient = new Adminclient(dbc_name, dbs_name, dbemail, dbphone_no, dbgst, dbpassword, dbaddress);
                 list.add(adminClient);
             }
 
@@ -202,15 +202,15 @@ public class AdmindeskController implements Initializable {
         } catch (SQLException e) {
             System.err.println(e);
         }
-        
+
         Slider.setTranslateY(600);
         myTable.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(Slider);
-            slide.setToY(0); 
+            slide.setToY(0);
             slide.play();
-            
+
             PauseTransition pause = new PauseTransition(Duration.seconds(5));
             pause.setOnFinished(e -> {
                 TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.4), Slider);

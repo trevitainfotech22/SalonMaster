@@ -19,7 +19,8 @@ public class cu_update extends Application{
 
         TextField textfield = new TextField();
         textfield.getStyleClass().add("Username");
-        stage.setTitle("User Login");
+
+        stage.setTitle("Salon Master");      
         stage.setScene(scene);
         stage.show();
     }

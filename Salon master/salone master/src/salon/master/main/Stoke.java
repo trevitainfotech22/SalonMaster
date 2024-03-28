@@ -13,7 +13,7 @@ public class Stoke extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/Stoke.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Admin Login");
+        stage.setTitle("Salon Master");      
        
         stage.setScene(scene);
         stage.show();

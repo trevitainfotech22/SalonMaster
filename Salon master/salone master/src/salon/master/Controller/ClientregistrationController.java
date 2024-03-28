@@ -107,10 +107,11 @@ public class ClientregistrationController implements Initializable {
                     pstmt.setString(1, Clientname);
                     pstmt.setString(2, Salonname);
                     pstmt.setString(3, Phonenumber);
-                    pstmt.setString(4, GSTnumber);
-                    pstmt.setString(5, Password);
-                    pstmt.setString(6, Address);
-                    pstmt.setString(7, Emailid);
+                     pstmt.setString(4, Emailid);
+                    pstmt.setString(5, GSTnumber);
+                    pstmt.setString(6, Password);
+                    pstmt.setString(7, Address);
+                   
 
                     int data = pstmt.executeUpdate();
                     if (!update) {

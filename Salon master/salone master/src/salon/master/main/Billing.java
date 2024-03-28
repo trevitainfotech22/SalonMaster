@@ -15,7 +15,7 @@ public class Billing extends Application {
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("Billing");
+        stage.setTitle("Salon Master");      
         stage.show();
     }
 

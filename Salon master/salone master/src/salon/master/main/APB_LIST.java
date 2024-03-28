@@ -14,7 +14,7 @@ public class APB_LIST extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/APPOINMENTS.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("APPOINMENTLIST");
+        stage.setTitle("Salon Master");      
 
         stage.setScene(scene);
         stage.show();

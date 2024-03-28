@@ -3,34 +3,34 @@ package salon.master.GETSET;
 import javafx.beans.property.*;
 
 public class BillEntry {
-    private final StringProperty invoiceNo;
+    private final IntegerProperty invoiceNo;
     private final StringProperty custNum;
     private final StringProperty item;
     private final StringProperty paymentMethod;
     private final StringProperty date;
-    private final IntegerProperty stock;
-    private final DoubleProperty price;
+    private final StringProperty stock;
+    private final IntegerProperty price;
 
-    public BillEntry(String invoiceNo, String custNum, String item, String paymentMethod, String date, int stock, double price) {
-        this.invoiceNo = new SimpleStringProperty(invoiceNo);
+    public BillEntry(int invoiceNo, String custNum, String item, String paymentMethod, String date, String stock, int price) {
+        this.invoiceNo = new SimpleIntegerProperty(invoiceNo);
         this.custNum = new SimpleStringProperty(custNum);
         this.item = new SimpleStringProperty(item);
         this.paymentMethod = new SimpleStringProperty(paymentMethod);
         this.date = new SimpleStringProperty(date);
-        this.stock = new SimpleIntegerProperty(stock);
-        this.price = new SimpleDoubleProperty(price);
+        this.stock = new SimpleStringProperty(stock);
+        this.price = new SimpleIntegerProperty(price);
     }
 
     // Getters and Setters for invoiceNo
-    public String getInvoiceNo() {
+    public Integer getInvoiceNo() {
         return invoiceNo.get();
     }
 
-    public StringProperty invoiceNoProperty() {
+    public IntegerProperty invoiceNoProperty() {
         return invoiceNo;
     }
 
-    public void setInvoiceNo(String invoiceNo) {
+    public void setInvoiceNo(int invoiceNo) {
         this.invoiceNo.set(invoiceNo);
     }
 
@@ -87,28 +87,28 @@ public class BillEntry {
     }
 
     // Getters and Setters for stock
-    public int getStock() {
+    public String getStock() {
         return stock.get();
     }
 
-    public IntegerProperty stockProperty() {
+    public StringProperty stockProperty() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock.set(stock);
     }
 
     // Getters and Setters for price
-    public double getPrice() {
+    public int getPrice() {
         return price.get();
     }
 
-    public DoubleProperty priceProperty() {
+    public IntegerProperty priceProperty() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price.set(price);
     }
 }

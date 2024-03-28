@@ -1,6 +1,5 @@
 package salon.master.Controller;
 
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -35,67 +34,51 @@ import javafx.util.Duration;
 import salon.master.GETSET.Employeelist;
 import salon.master.connectionprovider.Connectionprovider;
 
-
 public class EmployeeListController implements Initializable {
-
 
     @FXML
     private Button EDIT;
 
-
     @FXML
     private TableView<Employeelist> employeelisttt;
-
 
     @FXML
     private TableColumn<Employeelist, String> Eaddress;
 
-
     @FXML
     private TableColumn<Employeelist, Integer> Ecomission;
-
 
     @FXML
     private TableColumn<Employeelist, String> Eemail;
 
-
     @FXML
     private TableColumn<Employeelist, String> Ename;
-
 
     @FXML
     private TableColumn<Employeelist, BigInteger> Enumber;
 
-
     @FXML
     private ScrollPane scroll;
-
 
     @FXML
     private Button menu;
 
-
     @FXML
     private Button menuback;
-
 
     @FXML
     private StackPane Slider;
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-    private Employeelist employeelist;
 
+    private Employeelist employeelist;
 
     private Connection con = Connectionprovider.getConnection();
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         Slider.setTranslateY(600);
         employeelisttt.setOnMouseClicked(event -> {
@@ -104,7 +87,6 @@ public class EmployeeListController implements Initializable {
             slide.setNode(Slider);
             slide.setToY(0);
             slide.play();
-
 
             PauseTransition pause = new PauseTransition(Duration.seconds(5));
             pause.setOnFinished(e -> {
@@ -115,10 +97,8 @@ public class EmployeeListController implements Initializable {
             pause.play();
         });
 
-
         //        horizontal off
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
 
         scroll.setTranslateX(-800);
         menu.setOnMouseClicked(event -> {
@@ -126,10 +106,8 @@ public class EmployeeListController implements Initializable {
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(scroll);
 
-
             slide.setToX(0);
             slide.play();
-
 
             slide.setOnFinished((ActionEvent e) -> {
                 menu.setVisible(false);
@@ -137,16 +115,13 @@ public class EmployeeListController implements Initializable {
             });
         });
 
-
         menuback.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(scroll);
 
-
             slide.setToX(-800);
             slide.play();
-
 
             slide.setOnFinished((ActionEvent e) -> {
                 menu.setVisible(true);
@@ -154,13 +129,11 @@ public class EmployeeListController implements Initializable {
             });
         });
 
-
         Ename.setReorderable(false);
         Enumber.setReorderable(false);
         Eemail.setReorderable(false);
         Ecomission.setReorderable(false);
         Eaddress.setReorderable(false);
-
 
         // Set cell value factories for table columns
         Ename.setCellValueFactory(new PropertyValueFactory<>("ename"));
@@ -169,16 +142,14 @@ public class EmployeeListController implements Initializable {
         Ecomission.setCellValueFactory(new PropertyValueFactory<>("commission"));
         Eaddress.setCellValueFactory(new PropertyValueFactory<>("eaddress"));
 
-
         // Fetch data from the database and populate TableView
         loadDataFromDatabase();
-        
+
     }
 
     @FXML
     public void delete(ActionEvent event) {
         Employeelist selectedItem = employeelisttt.getSelectionModel().getSelectedItem();
-
 
         if (selectedItem != null) {
             // Show confirmation dialog
@@ -187,7 +158,6 @@ public class EmployeeListController implements Initializable {
             alert.setHeaderText("Delete Employee");
             alert.setContentText("Are you sure you want to delete this employee?");
             Optional<ButtonType> result = alert.showAndWait();
-
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // If user confirms deletion
@@ -216,10 +186,9 @@ public class EmployeeListController implements Initializable {
         }
     }
 
-
     @FXML
     public void edit(ActionEvent event) {
-         Employeelist employeelist = employeelisttt.getSelectionModel().getSelectedItem();
+        Employeelist employeelist = employeelisttt.getSelectionModel().getSelectedItem();
         if (employeelist == null) {
             Showalert();
         }
@@ -250,43 +219,35 @@ public class EmployeeListController implements Initializable {
         primaryStage.show();
     }
 
-
     @FXML
     public void commision(ActionEvent event) throws IOException {
         // Get the selected employee
         Employeelist selectedEmployee = employeelisttt.getSelectionModel().getSelectedItem();
-
+        Stage primaryStage = (Stage) employeelisttt.getScene().getWindow();
 
         if (selectedEmployee != null) {
             // Get the Enumber of the selected employee
             BigInteger enumber = selectedEmployee.getEnumber();
 
-
             // Load the commissiontable FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/Commissiontable.fxml"));
             Parent root = loader.load();
 
-
             // Access the controller of commissiontable
             Commissiontable_controller commissionTableController = loader.getController();
-
 
             // Pass the Enumber to the commissiontable controller
             commissionTableController.setEnumber(enumber);
 
-
             // Show the commissiontable stage
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setTitle("Commission Table");
-            stage.setScene(scene);
-            stage.show();
+            scene = new Scene(root); // Declare scene here
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } else {
             // If no employee is selected, show a warning message
             ShowAlert("No Employee Selected", "Please select an employee to add commission.");
         }
     }
-
 
 // Utility method to show alerts
     private void ShowAlert(String title, String message) {
@@ -297,7 +258,6 @@ public class EmployeeListController implements Initializable {
         alert.showAndWait();
     }
 
-
     private void deleteFromDatabase(Employeelist employee) throws SQLException {
         String query = "DELETE FROM ms_ereg WHERE enumber = ?";
         PreparedStatement preparedStatement = con.prepareStatement(query);
@@ -305,11 +265,10 @@ public class EmployeeListController implements Initializable {
         preparedStatement.executeUpdate();
     }
 
-
     private void loadDataFromDatabase() {
         try {
             ObservableList<Employeelist> employeeList = FXCollections.observableArrayList();
-            String query = "SELECT * FROM ms_ereg"; 
+            String query = "SELECT * FROM ms_ereg";
             PreparedStatement preparedStatement = con.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -321,9 +280,8 @@ public class EmployeeListController implements Initializable {
                 Integer comission = resultSet.getInt("commission");
                 String eaddress = resultSet.getString("eaddress");
 
-
                 // Create Employeelist objects and add them to the ObservableList
-                Employeelist employee = new Employeelist(id,ename, enumber, eemail, comission, eaddress);
+                Employeelist employee = new Employeelist(id, ename, enumber, eemail, comission, eaddress);
                 employeeList.add(employee);
             }
             // Populate TableView with the data
@@ -333,7 +291,6 @@ public class EmployeeListController implements Initializable {
         }
     }
 
-
     private void Showalert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No Value Entered");
@@ -341,7 +298,6 @@ public class EmployeeListController implements Initializable {
         alert.setContentText("Please select data from  table.");
         alert.showAndWait();
     }
-
 
     @FXML
     public void add(ActionEvent event) throws IOException {
@@ -352,7 +308,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
 //    Redirect pages
     @FXML
     public void Dashboard(ActionEvent event) throws IOException {
@@ -362,9 +317,7 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-
     }
-
 
     @FXML
     public void Setting(ActionEvent event) throws IOException {
@@ -375,7 +328,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void apb_list(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/APPOINMENTS.fxml"));
@@ -384,7 +336,6 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
     @FXML
     public void cu_reg(ActionEvent event) throws IOException {
@@ -395,7 +346,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void cu_list(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/CUSTOMERLIST.fxml"));
@@ -404,7 +354,6 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
     @FXML
     public void add_product(ActionEvent event) throws IOException {
@@ -415,7 +364,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void Im(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/Product.fxml"));
@@ -424,7 +372,6 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
     @FXML
     public void billing(ActionEvent event) throws IOException {
@@ -435,7 +382,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void Report(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/Report.fxml"));
@@ -444,7 +390,6 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
     @FXML
     public void Reward(ActionEvent event) throws IOException {
@@ -455,7 +400,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void booking(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/BookAppointment.fxml"));
@@ -465,7 +409,6 @@ public class EmployeeListController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void blhistory(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/Billinghistory.fxml"));
@@ -474,8 +417,5 @@ public class EmployeeListController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
-
 
 }

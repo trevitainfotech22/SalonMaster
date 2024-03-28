@@ -29,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.JOptionPane;
 import salon.master.GETSET.RewardItem;
 import salon.master.connectionprovider.Connectionprovider;
 
@@ -36,6 +37,9 @@ public class RewardController implements Initializable {
 
     @FXML
     private Button enter;
+    
+    @FXML
+    private Button search1;
 
     @FXML
     private TableView<RewardItem> rewardtable;
@@ -60,8 +64,8 @@ public class RewardController implements Initializable {
 
     @FXML
     private StackPane navSlider;
-    
-     @FXML
+
+    @FXML
     private ScrollPane scroll;
 
     @FXML
@@ -75,8 +79,6 @@ public class RewardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
 
         //        horizontal off
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -89,13 +91,13 @@ public class RewardController implements Initializable {
 
             slide.setToX(0);
             slide.play();
-            
+
             slide.setOnFinished((ActionEvent e) -> {
                 menu.setVisible(false);
                 menuback.setVisible(true);
             });
         });
-        
+
         menuback.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
@@ -103,16 +105,17 @@ public class RewardController implements Initializable {
 
             slide.setToX(-800);
             slide.play();
-            
+
             slide.setOnFinished((ActionEvent e) -> {
                 menu.setVisible(true);
                 menuback.setVisible(false);
             });
         });
-        
-        
-        
-        
+
+        search1.setOnMouseClicked(event -> {
+            search.setVisible(!search.isVisible());
+        });
+
         // Establish database connection
         connection = Connectionprovider.getConnection();
 
@@ -204,6 +207,8 @@ public class RewardController implements Initializable {
             alert.showAndWait();
             return;
         }
+
+        JOptionPane.showMessageDialog(null, "Reward redeem successfully");
 
         try {
             // Get the value to subtract from the reward from the minusreward TextField
@@ -339,8 +344,8 @@ public class RewardController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
-     @FXML
+
+    @FXML
     public void emp(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/EmployeeList.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -357,6 +362,5 @@ public class RewardController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
 
 }

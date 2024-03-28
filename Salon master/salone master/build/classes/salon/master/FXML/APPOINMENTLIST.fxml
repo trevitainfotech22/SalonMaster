@@ -294,7 +294,7 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Label prefHeight="20.0" prefWidth="118.0" styleClass="HEADERFONT" stylesheets="@../CSS/style.css" text="Appointment List">
+                  <Label prefHeight="30.0" prefWidth="154.0" styleClass="HEADERFONT" stylesheets="@../CSS/style.css" text="Appointment List">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

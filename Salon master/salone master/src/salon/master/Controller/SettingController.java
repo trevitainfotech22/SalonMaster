@@ -105,36 +105,35 @@ public class SettingController implements Initializable {
     private Scene scene;
     private Parent root;
 
-   @FXML
-public void save(ActionEvent event) throws IOException {
-    String maxRText = maxr.getText();
-    String maxOText = maxo.getText();
-    String maxGText = maxg.getText();
-    String rsText = Rs.getText();
-    String post = postfix.getText();
-    String prif = prefix.getText();
-    short status = (short) (tb.isSelected() ? 1 : 0);
+    @FXML
+    public void save(ActionEvent event) throws IOException {
+        String maxRText = maxr.getText();
+        String maxOText = maxo.getText();
+        String maxGText = maxg.getText();
+        String rsText = Rs.getText();
+        String post = postfix.getText();
+        String prif = prefix.getText();
+        short status = (short) (tb.isSelected() ? 1 : 0);
 
-    try {
-        int red = maxRText.isEmpty() ? 0 : Integer.parseInt(maxRText);
-        int orange = maxOText.isEmpty() ? 0 : Integer.parseInt(maxOText);
-        int green = maxGText.isEmpty() ? 0 : Integer.parseInt(maxGText);
-        int amount = rsText.isEmpty() ? 0 : Integer.parseInt(rsText);
+        try {
+            int red = maxRText.isEmpty() ? 0 : Integer.parseInt(maxRText);
+            int orange = maxOText.isEmpty() ? 0 : Integer.parseInt(maxOText);
+            int green = maxGText.isEmpty() ? 0 : Integer.parseInt(maxGText);
+            int amount = rsText.isEmpty() ? 0 : Integer.parseInt(rsText);
 
-        con = Connectionprovider.getConnection();
-        String q = "INSERT INTO ms_setting(amount, red, orange, green, postfix, prefix, ns_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        pstmt = con.prepareStatement(q);
-        pstmt.setInt(1, amount);
-        pstmt.setInt(2, red);
-        pstmt.setInt(3, orange);
-        pstmt.setInt(4, green);
-        pstmt.setString(5, post);
-        pstmt.setString(6, prif);
-        pstmt.setShort(7, status);
+            con = Connectionprovider.getConnection();
+            String q = "INSERT INTO ms_setting(amount, red, orange, green, postfix, prefix, ns_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pstmt = con.prepareStatement(q);
+            pstmt.setInt(1, amount);
+            pstmt.setInt(2, red);
+            pstmt.setInt(3, orange);
+            pstmt.setInt(4, green);
+            pstmt.setString(5, post);
+            pstmt.setString(6, prif);
+            pstmt.setShort(7, status);
 
-        pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
-       
             if (red > 0 && green > 0 && orange > 0 && amount == 0 && post.isEmpty() && prif.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Range saved successfully!");
             } else if (amount > 0 && red == 0 && green == 0 && orange == 0 && post.isEmpty() && prif.isEmpty()) {
@@ -144,13 +143,14 @@ public void save(ActionEvent event) throws IOException {
             } else {
                 JOptionPane.showMessageDialog(null, "Saved.");
             }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter valid numeric values.");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
         
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Please enter valid numeric values.");
-    } catch (SQLException e) {
-        System.out.println(e);
     }
-}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

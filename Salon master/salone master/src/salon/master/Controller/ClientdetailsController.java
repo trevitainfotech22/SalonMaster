@@ -58,49 +58,6 @@ public class ClientdetailsController implements Initializable {
     private Scene scene;
     private Parent root;
 
-    public void setAdminclient(Adminclient adminClient) {
-        this.adminclient = adminClient;
-
-        clientname.setText(adminClient.getC_name());
-        salonname.setText(adminClient.getS_name());
-        email.setText(adminClient.getEmail());
-        phone.setText(adminClient.getPhone_no());
-        gst.setText(adminClient.getGst());
-        password.setText(adminClient.getPassword());
-
-        address.setText(adminClient.getAddress());
-    }
-
-    @FXML
-    public void delete(ActionEvent event) throws SQLException {
-        if (adminclient == null) {
-            System.out.println("Admin client is null");
-            return;
-        }
-
-        try (Connection con = Connectionprovider.getConnection()) {
-            String query = "DELETE FROM ms_creg WHERE email = ?";
-            try (PreparedStatement pstmt = con.prepareStatement(query)) {
-                pstmt.setString(1, adminclient.getEmail());
-                int deletedRows = pstmt.executeUpdate();
-                if (deletedRows > 0) {
-                    showAlert("Confirm Logout", "Are you sure you want to logout?", e -> {
-                        try {
-                            root = FXMLLoader.load(getClass().getResource("../FXML/admindesk.fxml"));
-                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException ex) {
-                            System.out.println(ex);
-                        }
-                    });
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
 
     @FXML
     public void edit(ActionEvent event) {
@@ -151,7 +108,7 @@ public class ClientdetailsController implements Initializable {
     private void showAlert(String title, String content, EventHandler<ActionEvent> onConfirmation) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(title);
-        alert.setHeaderText(null); // Set header text to null to hide it
+        alert.setHeaderText(null);
         alert.setContentText(content);
 
         alert.showAndWait().ifPresent(button -> {
@@ -159,5 +116,16 @@ public class ClientdetailsController implements Initializable {
                 onConfirmation.handle(null);
             }
         });
+    }
+
+    void setAdminclient(Adminclient adminClient) {
+        this.adminclient = adminClient;
+        clientname.setText(adminClient.getC_name());
+        salonname.setText(adminClient.getS_name());
+        email.setText(adminClient.getEmail());
+        phone.setText(adminClient.getPhone_no());
+        gst.setText(adminClient.getGst());
+        password.setText(adminClient.getPassword());
+        address.setText(adminClient.getAddress());
     }
 }

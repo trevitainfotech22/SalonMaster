@@ -48,13 +48,13 @@
                </font>
             </Button>
             <TextField fx:id="ps" editable="false" layoutX="20.0" layoutY="69.0" prefHeight="26.0" prefWidth="79.0" promptText="P/S" styleClass="textfield" />
-            <TextField fx:id="productsearch" layoutX="17.0" layoutY="22.0" prefHeight="26.0" prefWidth="200.0" promptText="Search item" styleClass="textfield" />
+            <TextField fx:id="productsearch" layoutX="17.0" layoutY="32.0" prefHeight="26.0" prefWidth="200.0" promptText="Search item" styleClass="textfield" />
+            <Label fx:id="invoiceno" layoutX="15.0" layoutY="4.0" text="Invoice No:" />
          </children>
       </Pane>
       <Pane layoutX="578.0" layoutY="257.0" prefHeight="342.0" prefWidth="222.0" styleClass="billcust" stylesheets="@../CSS/Clientstyle.css">
          <children>
             <DatePicker fx:id="date" layoutX="117.0" layoutY="4.0" prefHeight="26.0" prefWidth="103.0" stylesheets="@../CSS/Clientstyle.css" />
-            <Label fx:id="invoiceno" layoutX="6.0" layoutY="4.0" text="Invoice" />
             <TextField fx:id="namet" layoutX="16.0" layoutY="92.0" prefHeight="26.0" prefWidth="200.0" promptText="Customer name" stylesheets="@../CSS/Clientstyle.css" />
             <Text layoutX="7.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer name :">
                <font>

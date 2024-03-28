@@ -51,24 +51,6 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="Showpassword" layoutX="306.0" layoutY="327.0" mnemonicParsing="false" onAction="#togglePasswordVisibility" prefHeight="29.0" prefWidth="31.0" styleClass="hamburgbtn" stylesheets="@../CSS/clientstyle.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../media/Eye-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="Hidepassword" layoutX="306.0" layoutY="260.0" mnemonicParsing="false" onAction="#hidePasswordField" prefHeight="29.0" prefWidth="31.0" styleClass="hamburgbtn" stylesheets="@../CSS/clientstyle.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../media/eye%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </children>
       </Pane>
       <Label layoutX="14.0" layoutY="14.0" styleClass="salonmaster" stylesheets="@../CSS/clientstyle.css" text="Salon master">

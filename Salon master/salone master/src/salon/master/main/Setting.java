@@ -1,4 +1,3 @@
-
 package salon.master.main;
 
 import javafx.application.Application;
@@ -15,6 +14,8 @@ public class Setting extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../FXML/Setting.fxml"));
 
         Scene scene = new Scene(root);
+        stage.setTitle("Salon Master");
+
         stage.setScene(scene);
         stage.show();
     }

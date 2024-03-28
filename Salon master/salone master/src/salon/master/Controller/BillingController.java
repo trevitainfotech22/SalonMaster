@@ -132,6 +132,9 @@ public class BillingController implements Initializable {
     private PreparedStatement pst;
     private boolean uupdate;
 
+    String postfix = "";
+    String prefix = "";
+
     @FXML
     public void exit(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../FXML/Billing.fxml"));
@@ -390,9 +393,6 @@ public class BillingController implements Initializable {
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
-            String postfix = "";
-            String prefix = "";
-
             while (rs.next()) {
                 postfix = rs.getString("postfix");
                 prefix = rs.getString("prefix");
@@ -577,6 +577,10 @@ public class BillingController implements Initializable {
             showAlert("Error", "Please select a payment method.");
             return;
         }
+        if (Billing.getSelectionModel().isEmpty()) {
+            showAlert("Error", "Add Item to the table");
+            return;
+        }
 
         try {
             double commissionPercentage = 0;
@@ -619,10 +623,10 @@ public class BillingController implements Initializable {
                 pst.setString(10, item.getPs());
                 pst.setString(11, employeeName);
                 pst.setDouble(12, commissionAmount);
-                pst.setString(13, employeeNumber); 
+                pst.setString(13, employeeNumber);
 
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null,"Bill Saved");
+                JOptionPane.showMessageDialog(null, "Bill Saved");
 
                 String insertRewardQuery = "INSERT INTO ms_rew (number, reward) VALUES (?, ?) ON CONFLICT (number) DO UPDATE SET reward = ms_rew.reward + EXCLUDED.reward";
                 pst = con.prepareStatement(insertRewardQuery);
@@ -641,7 +645,7 @@ public class BillingController implements Initializable {
             Logger.getLogger(BillingController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        invoiceno.setText("" + invoiceNumber);
+            invoiceno.setText("Invoice No:" + postfix + invoiceNumber + prefix);
 
         billingItemList.clear();
         Billing.setItems(billingItemList);
@@ -665,7 +669,7 @@ public class BillingController implements Initializable {
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
-        alert.setHeaderText(null);
+        alert.setHeaderText("Alert");
         alert.setContentText(content);
         alert.showAndWait();
     }

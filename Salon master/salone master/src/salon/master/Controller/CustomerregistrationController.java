@@ -26,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import salon.master.connectionprovider.Connectionprovider;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -139,7 +140,27 @@ public class CustomerregistrationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        AdateTextField.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) > 0);
+            }
+        });
+        BdateTextField.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) > 0);
+            }
+        });
         FillComboBox();
+        
 
         //horizontal off
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
